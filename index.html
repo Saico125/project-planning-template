@@ -25,7 +25,1189 @@
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Planning Template - Thai/English</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .header h2 {
+            font-size: 18px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        .language-toggle {
+            background: #f1f5f9;
+            padding: 20px 30px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .language-btn {
+            background: white;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+            padding: 12px 24px;
+            margin-right: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .language-btn:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+        
+        .language-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+            padding: 16px 0;
+            border-bottom: 3px solid #2563eb;
+            margin-bottom: 24px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+        }
+        
+        th {
+            background: #f8fafc;
+            padding: 16px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 2px solid #e5e7eb;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:hover {
+            background: #f8fafc;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+            transition: border-color 0.2s ease;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .input-field::placeholder {
+            color: #9ca3af;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-add {
+            background: #059669;
+            color: white;
+        }
+        
+        .btn-add:hover {
+            background: #047857;
+        }
+        
+        .btn-remove {
+            background: #dc2626;
+            color: white;
+        }
+        
+        .btn-remove:hover {
+            background: #b91c1c;
+        }
+        
+        .download-section {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .download-section h3 {
+            font-size: 20px;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+        
+        .download-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            margin: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .download-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+        
+        .info-box {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .thai-content, .english-content {
+            display: none;
+        }
+        
+        .thai-content.active, .english-content.active {
+            display: block;
+        }
+        
+        .approval-section {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .approval-section p {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        
+        .status-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .status-indicator.show {
+            opacity: 1;
+        }
+        
+        @media print {
+            body { 
+                background: white !important; 
+                -webkit-print-color-adjust: exact;
+            }
+            .container { 
+                box-shadow: none !important; 
+                margin: 0 !important;
+                max-width: none !important;
+            }
+            .language-toggle, .download-section, .button-group, .info-box, .status-indicator { 
+                display: none !important; 
+            }
+            .header {
+                background: #2563eb !important;
+                color: white !important;
+            }
+            table {
+                page-break-inside: avoid;
+            }
+            .section {
+                page-break-inside: avoid;
+                margin-bottom: 30px;
+            }
+            .input-field {
+                border: 1px solid #ccc !important;
+                background: white !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .language-toggle {
+                padding: 15px 20px;
+            }
+            
+            table {
+                font-size: 13px;
+            }
+            
+            th, td {
+                padding: 8px 6px;
+            }
+            
+            .download-btn {
+                display: block;
+                width: 100%;
+                margin: 8px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="status-indicator" id="statusIndicator">Auto-saved ✓</div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Project Planning Template</h1>
+            <h2>แบบฟอร์มวางแผนโครงการ</h2>
+        </div>
+
+        <div class="language-toggle">
+            <button class="language-btn active" onclick="showLanguage('thai')">ภาษาไทย</button>
+            <button class="language-btn" onclick="showLanguage('english')">English</button>
+        </div>
+
+        <div class="content">
+            <!-- Thai Content -->
+            <div id="thai-content" class="thai-content active">
+
+            <div class="section">
+                <div class="section-title">แผนการทำงานเชิงรุก การใช้ AI เพื่อต่อยอดในการทำงานกราฟิก</div>
+                <table id="ai-planning-thai">
+                    <tr>
+                        <th style="width: 25%">วางแผน</th>
+                        <th style="width: 25%">ดำเนินการ</th>
+                        <th style="width: 25%">ประเมินผล</th>
+                        <th style="width: 25%">ปรับปรุง</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="วิเคราะห์ความต้องการ AI สำหรับงานกราฟิก"></td>
+                        <td><input type="text" class="input-field" placeholder="ทดลองใช้เครื่องมือ AI Design"></td>
+                        <td><input type="text" class="input-field" placeholder="ประเมินประสิทธิภาพและคุณภาพ"></td>
+                        <td><input type="text" class="input-field" placeholder="ปรับปรุงกระบวนการทำงาน"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="กำหนดเป้าหมายการใช้ AI"></td>
+                        <td><input type="text" class="input-field" placeholder="ฝึกอบรมทีมงาน"></td>
+                        <td><input type="text" class="input-field" placeholder="วัดผลการประหยัดเวลา"></td>
+                        <td><input type="text" class="input-field" placeholder="พัฒนาทักษะเพิ่มเติม"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="เลือกเครื่องมือ AI ที่เหมาะสม"></td>
+                        <td><input type="text" class="input-field" placeholder="ผสานรวม AI กับ Workflow"></td>
+                        <td><input type="text" class="input-field" placeholder="ตรวจสอบความพอใจของลูกค้า"></td>
+                        <td><input type="text" class="input-field" placeholder="อัพเกรดเครื่องมือและเทคโนโลยี"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <div class="section-title">ดำเนินการ</div>
+                <table id="implementation-thai">
+                    <tr>
+                        <th style="width: 25%">ขั้นตอน</th>
+                        <th style="width: 30%">รายละเอียด</th>
+                        <th style="width: 25%">ผู้รับผิดชอบ</th>
+                        <th style="width: 20%">ระยะเวลา</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="ระบุขั้นตอนการดำเนินงาน"></td>
+                        <td><input type="text" class="input-field" placeholder="รายละเอียดการดำเนินงาน"></td>
+                        <td><input type="text" class="input-field" placeholder="ชื่อผู้รับผิดชอบ"></td>
+                        <td><input type="text" class="input-field" placeholder="ระยะเวลาดำเนินการ"></td>
+                    </tr>
+                </table>
+                <div class="button-group">
+                    <button type="button" onclick="addRowThai('implementation-thai')" class="btn btn-add">+ เพิ่มแถว</button>
+                    <button type="button" onclick="removeRowThai('implementation-thai')" class="btn btn-remove">- ลบแถว</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">การติดตามผล</div>
+                <table id="monitoring-thai">
+                    <tr>
+                        <th style="width: 40%">วิธีการติดตาม</th>
+                        <th style="width: 30%">ความถี่</th>
+                        <th style="width: 30%">ผู้รับผิดชอบ</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="วิธีการติดตามผลงาน"></td>
+                        <td><input type="text" class="input-field" placeholder="ความถี่ในการติดตาม"></td>
+                        <td><input type="text" class="input-field" placeholder="ผู้รับผิดชอบ"></td>
+                    </tr>
+                </table>
+                <div class="button-group">
+                    <button type="button" onclick="addRowThai('monitoring-thai')" class="btn btn-add">+ เพิ่มแถว</button>
+                    <button type="button" onclick="removeRowThai('monitoring-thai')" class="btn btn-remove">- ลบแถว</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">การประเมินผล (เวลา 1 เดือน)</div>
+                <table id="evaluation-thai">
+                    <tr>
+                        <th>ข้อมูลประเมิน</th>
+                        <th>ผลลัพธ์</th>
+                        <th>ความคิดเห็น/ข้อเสนอแนะ</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="ข้อมูลที่ต้องประเมิน"></td>
+                        <td><input type="text" class="input-field" placeholder="ผลลัพธ์ที่ได้"></td>
+                        <td><input type="text" class="input-field" placeholder="ความคิดเห็น/ข้อเสนอแนะ"></td>
+                    </tr>
+                </table>
+                <div class="button-group">
+                    <button type="button" onclick="addRowThai('evaluation-thai')" class="btn btn-add">+ เพิ่มแถว</button>
+                    <button type="button" onclick="removeRowThai('evaluation-thai')" class="btn btn-remove">- ลบแถว</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">การปรับปรุงต่อเนื่อง</div>
+                <table id="continuous-improvement-thai">
+                    <tr>
+                        <th style="width: 25%">ประเด็นที่ต้องปรับปรุง</th>
+                        <th style="width: 25%">วิธีการปรับปรุง</th>
+                        <th style="width: 20%">ผู้รับผิดชอบ</th>
+                        <th style="width: 15%">เป้าหมาย</th>
+                        <th style="width: 15%">การดำเนินการ</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="ระบุประเด็นที่ต้องปรับปรุง"></td>
+                        <td><input type="text" class="input-field" placeholder="วิธีการ/แนวทางการปรับปรุง"></td>
+                        <td><input type="text" class="input-field" placeholder="ชื่อผู้รับผิดชอบ"></td>
+                        <td><input type="text" class="input-field" placeholder="เป้าหมาย"></td>
+                        <td><input type="text" class="input-field" placeholder="สถานะ"></td>
+                    </tr>
+                </table>
+                <div class="button-group">
+                    <button type="button" onclick="addRowThai('continuous-improvement-thai')" class="btn btn-add">+ เพิ่มแถว</button>
+                    <button type="button" onclick="removeRowThai('continuous-improvement-thai')" class="btn btn-remove">- ลบแถว</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">การรับรองผลงาน</div>
+                <div class="approval-section">
+                    <p><strong>ผู้จัดทำแผนงาน:</strong> _________________________ วันที่: _________________</p>
+                    <p><strong>ผู้อนุมัติโครงการ:</strong> _________________________ วันที่: _________________</p>
+                    <p><strong>หัวหน้าแผนก:</strong> _________________________ วันที่: _________________</p>
+                </div>
+            </div>
+            </div>
+
+            <!-- English Content -->
+            <div id="english-content" class="english-content">
+
+            <div class="section">
+                <div class="section-title">Proactive Work Plan: Using AI to Enhance Graphic Design Work</div>
+                <table id="ai-planning-english">
+                    <tr>
+                        <th style="width: 25%">Planning</th>
+                        <th style="width: 25%">Implementation</th>
+                        <th style="width: 25%">Evaluation</th>
+                        <th style="width: 25%">Improvement</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="Analyze AI requirements for graphic work"></td>
+                        <td><input type="text" class="input-field" placeholder="Test AI Design tools"></td>
+                        <td><input type="text" class="input-field" placeholder="Evaluate efficiency and quality"></td>
+                        <td><input type="text" class="input-field" placeholder="Improve work processes"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="Set AI usage goals"></td>
+                        <td><input type="text" class="input-field" placeholder="Train team members"></td>
+                        <td><input type="text" class="input-field" placeholder="Measure time savings"></td>
+                        <td><input type="text" class="input-field" placeholder="Develop additional skills"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="Select suitable AI tools"></td>
+                        <td><input type="text" class="input-field" placeholder="Integrate AI with workflow"></td>
+                        <td><input type="text" class="input-field" placeholder="Check customer satisfaction"></td>
+                        <td><input type="text" class="input-field" placeholder="Upgrade tools and technology"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Implementation</div>
+                <table id="implementation-english">
+                    <tr>
+                        <th style="width: 25%">Steps</th>
+                        <th style="width: 30%">Details</th>
+                        <th style="width: 25%">Responsible Person</th>
+                        <th style="width: 20%">Timeline</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="Specify implementation steps"></td>
+                        <td><input type="text" class="input-field" placeholder="Implementation details"></td>
+                        <td><input type="text" class="input-field" placeholder="Responsible person name"></td>
+                        <td><input type="text" class="input-field" placeholder="Implementation timeline"></td>
+                    </tr>
+                </table>
+                <div class="button-group">
+                    <button type="button" onclick="addRowEnglish('implementation-english')" class="btn btn-add">+ Add Row</button>
+                    <button type="button" onclick="removeRowEnglish('implementation-english')" class="btn btn-remove">- Remove Row</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Progress Monitoring</div>
+                <table id="monitoring-english">
+                    <tr>
+                        <th style="width: 40%">Monitoring Method</th>
+                        <th style="width: 30%">Frequency</th>
+                        <th style="width: 30%">Responsible Person</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="Monitoring methodology"></td>
+                        <td><input type="text" class="input-field" placeholder="Monitoring frequency"></td>
+                        <td><input type="text" class="input-field" placeholder="Responsible person"></td>
+                    </tr>
+                </table>
+                <div class="button-group">
+                    <button type="button" onclick="addRowEnglish('monitoring-english')" class="btn btn-add">+ Add Row</button>
+                    <button type="button" onclick="removeRowEnglish('monitoring-english')" class="btn btn-remove">- Remove Row</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Evaluation (1 Month Period)</div>
+                <table id="evaluation-english">
+                    <tr>
+                        <th>Evaluation Data</th>
+                        <th>Results</th>
+                        <th>Comments/Suggestions</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="Data to be evaluated"></td>
+                        <td><input type="text" class="input-field" placeholder="Results obtained"></td>
+                        <td><input type="text" class="input-field" placeholder="Comments/Suggestions"></td>
+                    </tr>
+                </table>
+                <div class="button-group">
+                    <button type="button" onclick="addRowEnglish('evaluation-english')" class="btn btn-add">+ Add Row</button>
+                    <button type="button" onclick="removeRowEnglish('evaluation-english')" class="btn btn-remove">- Remove Row</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Continuous Improvement</div>
+                <table id="continuous-improvement-english">
+                    <tr>
+                        <th style="width: 25%">Issues to Improve</th>
+                        <th style="width: 25%">Improvement Methods</th>
+                        <th style="width: 20%">Responsible Person</th>
+                        <th style="width: 15%">Target</th>
+                        <th style="width: 15%">Action Status</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="input-field" placeholder="Identify improvement areas"></td>
+                        <td><input type="text" class="input-field" placeholder="Methods/approaches for improvement"></td>
+                        <td><input type="text" class="input-field" placeholder="Responsible person name"></td>
+                        <td><input type="text" class="input-field" placeholder="Target goal"></td>
+                        <td><input type="text" class="input-field" placeholder="Status"></td>
+                    </tr>
+                </table>
+                <div class="button-group">
+                    <button type="button" onclick="addRowEnglish('continuous-improvement-english')" class="btn btn-add">+ Add Row</button>
+                    <button type="button" onclick="removeRowEnglish('continuous-improvement-english')" class="btn btn-remove">- Remove Row</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Project Approval</div>
+                <div class="approval-section">
+                    <p><strong>Plan Prepared by:</strong> _________________________ Date: _________________</p>
+                    <p><strong>Project Approved by:</strong> _________________________ Date: _________________</p>
+                    <p><strong>Department Head:</strong> _________________________ Date: _________________</p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h3>📥 Download Options / ตัวเลือกการดาวน์โหลด</h3>
+            
+            <!-- ปุ่มดาวน์โหลดหลัก -->
+            <div style="margin-bottom: 20px;">
+                <button class="download-btn" onclick="downloadPDF()">📄 Print to PDF / พิมพ์เป็น PDF</button>
+            </div>
+            
+            <!-- ปุ่มดาวน์โหลด Excel Template -->
+            <div style="margin-bottom: 20px;">
+                <strong>📊 Excel Templates with Your Data / แบบฟอร์ม Excel พร้อมข้อมูล:</strong><br>
+                <button class="download-btn" onclick="downloadExcel('thai')" style="background: #10b981;">📊 Thai Excel (ข้อมูลที่กรอกแล้ว)</button>
+                <button class="download-btn" onclick="downloadExcel('english')" style="background: #10b981;">📊 English Excel (Filled Data)</button>
+            </div>
+            
+            <div class="info-box">
+                <strong>💡 คำแนะนำการใช้งาน / Usage Guide:</strong><br><br>
+                
+                <strong>📝 การกรอกข้อมูล / Data Entry:</strong><br>
+                • กรอกข้อมูลในตารางต่างๆ และเพิ่ม/ลบแถวตามต้องการ<br>
+                • Fill in the tables and add/remove rows as needed<br>
+                • ระบบจะบันทึกข้อมูลอัตโนมัติขณะที่คุณพิมพ์<br>
+                • System auto-saves your data as you type<br><br>
+                
+                <strong>📥 การดาวน์โหลด / Download Options:</strong><br>
+                • <strong>Excel:</strong> แบบฟอร์มที่จัดรูปแบบพร้อมข้อมูล / Formatted template with your data<br>
+                • <strong>PDF:</strong> สำหรับพิมพ์หรือส่งเอกสาร / For printing or document sharing<br><br>
+                
+                <strong>✅ เคล็ดลับ / Tips:</strong><br>
+                • สลับภาษาได้ตลอดเวลา / Switch languages anytime<br>
+                • ข้อมูลจะถูกเก็บไว้ในหน่วยความจำ / Data stored in memory<br>
+                • ดาวน์โหลดเป็นระยะเพื่อความปลอดภัย / Download periodically for safety
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let autoSaveTimeout;
+        
+        // Language switching
+        function showLanguage(lang) {
+            document.querySelectorAll('.thai-content, .english-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            document.getElementById(lang + '-content').classList.add('active');
+            
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            saveToMemory();
+        }
+
+        // Add row functions
+        function addRowThai(tableId) {
+            const table = document.getElementById(tableId);
+            const newRow = table.insertRow();
+            
+            const placeholders = {
+                'implementation-thai': [
+                    'ระบุขั้นตอนการดำเนินงาน',
+                    'รายละเอียดการดำเนินงาน', 
+                    'ชื่อผู้รับผิดชอบ',
+                    'ระยะเวลาดำเนินการ'
+                ],
+                'monitoring-thai': [
+                    'วิธีการติดตามผลงาน',
+                    'ความถี่ในการติดตาม',
+                    'ผู้รับผิดชอบ'
+                ],
+                'evaluation-thai': [
+                    'ข้อมูลที่ต้องประเมิน',
+                    'ผลลัพธ์ที่ได้',
+                    'ความคิดเห็น/ข้อเสนอแนะ'
+                ],
+                'continuous-improvement-thai': [
+                    'ระบุประเด็นที่ต้องปรับปรุง',
+                    'วิธีการ/แนวทางการปรับปรุง',
+                    'ชื่อผู้รับผิดชอบ',
+                    'เป้าหมาย',
+                    'สถานะ'
+                ]
+            };
+            
+            const currentPlaceholders = placeholders[tableId] || ['กรอกข้อมูล...'];
+            
+            for (let i = 0; i < currentPlaceholders.length; i++) {
+                const cell = newRow.insertCell();
+                cell.innerHTML = `<input type="text" class="input-field" placeholder="${currentPlaceholders[i]}">`;
+            }
+            
+            saveToMemory();
+        }
+
+        function addRowEnglish(tableId) {
+            const table = document.getElementById(tableId);
+            const newRow = table.insertRow();
+            
+            const placeholders = {
+                'implementation-english': [
+                    'Specify implementation steps',
+                    'Implementation details',
+                    'Responsible person name',
+                    'Implementation timeline'
+                ],
+                'monitoring-english': [
+                    'Monitoring methodology',
+                    'Monitoring frequency',
+                    'Responsible person'
+                ],
+                'evaluation-english': [
+                    'Data to be evaluated',
+                    'Results obtained',
+                    'Comments/Suggestions'
+                ],
+                'continuous-improvement-english': [
+                    'Identify improvement areas',
+                    'Methods/approaches for improvement',
+                    'Responsible person name',
+                    'Target goal',
+                    'Status'
+                ]
+            };
+            
+            const currentPlaceholders = placeholders[tableId] || ['Enter data...'];
+            
+            for (let i = 0; i < currentPlaceholders.length; i++) {
+                const cell = newRow.insertCell();
+                cell.innerHTML = `<input type="text" class="input-field" placeholder="${currentPlaceholders[i]}">`;
+            }
+            
+            saveToMemory();
+        }
+
+        function removeRowThai(tableId) {
+            const table = document.getElementById(tableId);
+            if (table.rows.length > 2) {
+                table.deleteRow(table.rows.length - 1);
+                saveToMemory();
+            } else {
+                alert('ไม่สามารถลบแถวได้ ต้องมีอย่างน้อย 1 แถวข้อมูล');
+            }
+        }
+
+        function removeRowEnglish(tableId) {
+            const table = document.getElementById(tableId);
+            if (table.rows.length > 2) {
+                table.deleteRow(table.rows.length - 1);
+                saveToMemory();
+            } else {
+                alert('Cannot delete row. Must have at least 1 data row.');
+            }
+        }
+
+        // Data management functions
+        function getTableData(tableId) {
+            const table = document.getElementById(tableId);
+            if (!table) return [];
+            
+            const data = [];
+            for (let i = 0; i < table.rows.length; i++) {
+                const row = table.rows[i];
+                const rowData = [];
+                for (let j = 0; j < row.cells.length; j++) {
+                    const input = row.cells[j].querySelector('input');
+                    if (input) {
+                        rowData.push(input.value || '');
+                    } else {
+                        rowData.push(row.cells[j].textContent.trim() || '');
+                    }
+                }
+                data.push(rowData);
+            }
+            return data;
+        }
+
+        function getAllData() {
+            return {
+                thai: {
+                    'ai-planning-thai': getTableData('ai-planning-thai'),
+                    'implementation-thai': getTableData('implementation-thai'),
+                    'monitoring-thai': getTableData('monitoring-thai'),
+                    'evaluation-thai': getTableData('evaluation-thai'),
+                    'continuous-improvement-thai': getTableData('continuous-improvement-thai')
+                },
+                english: {
+                    'ai-planning-english': getTableData('ai-planning-english'),
+                    'implementation-english': getTableData('implementation-english'),
+                    'monitoring-english': getTableData('monitoring-english'),
+                    'evaluation-english': getTableData('evaluation-english'),
+                    'continuous-improvement-english': getTableData('continuous-improvement-english')
+                }
+            };
+        }
+
+        // Memory storage (in-memory only for Claude artifacts)
+        let projectData = {};
+
+        function saveToMemory() {
+            projectData = getAllData();
+            showStatus('Auto-saved ✓');
+        }
+
+        function showStatus(message) {
+            const indicator = document.getElementById('statusIndicator');
+            indicator.textContent = message;
+            indicator.classList.add('show');
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+
+        // Download functions
+        function downloadHTML() {
+            try {
+                // รวบรวมข้อมูลล่าสุดก่อนดาวน์โหลด
+                saveToMemory();
+                
+                // สร้าง HTML ที่มีข้อมูลที่กรอกแล้ว
+                let fullHTML = document.documentElement.outerHTML;
+                
+                // อัพเดตข้อมูลในทุก input field ให้แสดงเป็น value แทน placeholder
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(fullHTML, 'text/html');
+                
+                // อัพเดตค่าในทุก input field
+                const inputs = doc.querySelectorAll('.input-field');
+                inputs.forEach((input, index) => {
+                    const originalInput = document.querySelectorAll('.input-field')[index];
+                    if (originalInput && originalInput.value) {
+                        input.setAttribute('value', originalInput.value);
+                        input.value = originalInput.value;
+                    }
+                });
+                
+                const updatedHTML = doc.documentElement.outerHTML;
+                
+                const blob = new Blob([updatedHTML], { type: 'text/html;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `project_planning_filled_${new Date().toISOString().split('T')[0]}.html`;
+                a.click();
+                URL.revokeObjectURL(url);
+                showStatus('HTML file with data downloaded! ✓');
+            } catch (error) {
+                console.error('HTML download error:', error);
+                alert('HTML download failed / ดาวน์โหลด HTML ล้มเหลว');
+            }
+        }
+
+        function downloadPDF() {
+            // Hide interactive elements for printing
+            const elements = document.querySelectorAll('.language-toggle, .download-section, .button-group');
+            elements.forEach(el => el.style.display = 'none');
+            
+            setTimeout(() => {
+                window.print();
+                // Restore elements after print dialog
+                setTimeout(() => {
+                    elements.forEach(el => el.style.display = '');
+                }, 1000);
+            }, 100);
+        }
+
+        function downloadExcel(language) {
+            try {
+                // รวบรวมข้อมูลจริงจาก UI
+                const data = getAllData();
+                
+                let htmlContent = `
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+                        th, td { border: 1px solid #000; padding: 8px; text-align: left; vertical-align: top; }
+                        th { background-color: #f0f0f0; font-weight: bold; }
+                        h2 { color: #333; margin-top: 20px; }
+                        h3 { color: #555; margin-top: 15px; }
+                        .empty-cell { min-height: 20px; }
+                    </style>
+                </head>
+                <body>`;
+                
+                if (language === 'thai') {
+                    const thaiData = data.thai;
+                    
+                    htmlContent += `<h2>แบบฟอร์มวางแผนโครงการ</h2>`;
+                    
+                    // AI Planning Table
+                    htmlContent += `<h3>แผนการทำงานเชิงรุก การใช้ AI เพื่อต่อยอดในการทำงานกราฟิก</h3><table>`;
+                    const aiData = thaiData['ai-planning-thai'] || [];
+                    for (let i = 0; i < aiData.length; i++) {
+                        htmlContent += '<tr>';
+                        for (let j = 0; j < aiData[i].length; j++) {
+                            if (i === 0) {
+                                htmlContent += `<th>${aiData[i][j] || ''}</th>`;
+                            } else {
+                                htmlContent += `<td>${aiData[i][j] || '<div class="empty-cell"></div>'}</td>`;
+                            }
+                        }
+                        htmlContent += '</tr>';
+                    }
+                    htmlContent += '</table>';
+                    
+                    // Implementation Table
+                    htmlContent += `<h3>ดำเนินการ</h3><table>`;
+                    const implData = thaiData['implementation-thai'] || [];
+                    for (let i = 0; i < implData.length; i++) {
+                        htmlContent += '<tr>';
+                        for (let j = 0; j < implData[i].length; j++) {
+                            if (i === 0) {
+                                htmlContent += `<th>${implData[i][j] || ''}</th>`;
+                            } else {
+                                htmlContent += `<td>${implData[i][j] || '<div class="empty-cell"></div>'}</td>`;
+                            }
+                        }
+                        htmlContent += '</tr>';
+                    }
+                    htmlContent += '</table>';
+                    
+                    // Monitoring Table
+                    htmlContent += `<h3>การติดตามผล</h3><table>`;
+                    const monData = thaiData['monitoring-thai'] || [];
+                    for (let i = 0; i < monData.length; i++) {
+                        htmlContent += '<tr>';
+                        for (let j = 0; j < monData[i].length; j++) {
+                            if (i === 0) {
+                                htmlContent += `<th>${monData[i][j] || ''}</th>`;
+                            } else {
+                                htmlContent += `<td>${monData[i][j] || '<div class="empty-cell"></div>'}</td>`;
+                            }
+                        }
+                        htmlContent += '</tr>';
+                    }
+                    htmlContent += '</table>';
+                    
+                    // Evaluation Table
+                    htmlContent += `<h3>การประเมินผล (เวลา 1 เดือน)</h3><table>`;
+                    const evalData = thaiData['evaluation-thai'] || [];
+                    for (let i = 0; i < evalData.length; i++) {
+                        htmlContent += '<tr>';
+                        for (let j = 0; j < evalData[i].length; j++) {
+                            if (i === 0) {
+                                htmlContent += `<th>${evalData[i][j] || ''}</th>`;
+                            } else {
+                                htmlContent += `<td>${evalData[i][j] || '<div class="empty-cell"></div>'}</td>`;
+                            }
+                        }
+                        htmlContent += '</tr>';
+                    }
+                    htmlContent += '</table>';
+                    
+                    // Continuous Improvement Table
+                    htmlContent += `<h3>การปรับปรุงต่อเนื่อง</h3><table>`;
+                    const contData = thaiData['continuous-improvement-thai'] || [];
+                    for (let i = 0; i < contData.length; i++) {
+                        htmlContent += '<tr>';
+                        for (let j = 0; j < contData[i].length; j++) {
+                            if (i === 0) {
+                                htmlContent += `<th>${contData[i][j] || ''}</th>`;
+                            } else {
+                                htmlContent += `<td>${contData[i][j] || '<div class="empty-cell"></div>'}</td>`;
+                            }
+                        }
+                        htmlContent += '</tr>';
+                    }
+                    htmlContent += '</table>';
+                    
+                    // Approval Section
+                    htmlContent += `
+                    <h3>การรับรองผลงาน</h3>
+                    <table>
+                        <tr><td><strong>ผู้จัดทำแผนงาน:</strong></td><td>................................</td><td><strong>วันที่:</strong></td><td>................</td></tr>
+                        <tr><td><strong>ผู้อนุมัติโครงการ:</strong></td><td>................................</td><td><strong>วันที่:</strong></td><td>................</td></tr>
+                        <tr><td><strong>หัวหน้าแผนก:</strong></td><td>................................</td><td><strong>วันที่:</strong></td><td>................</td></tr>
+                    </table>`;
+                    
+                } else {
+                    const englishData = data.english;
+                    
+                    htmlContent += `<h2>Project Planning Template</h2>`;
+                    
+                    // AI Planning Table
+                    htmlContent += `<h3>Proactive Work Plan: Using AI to Enhance Graphic Design Work</h3><table>`;
+                    const aiData = englishData['ai-planning-english'] || [];
+                    for (let i = 0; i < aiData.length; i++) {
+                        htmlContent += '<tr>';
+                        for (let j = 0; j < aiData[i].length; j++) {
+                            if (i === 0) {
+                                htmlContent += `<th>${aiData[i][j] || ''}</th>`;
+                            } else {
+                                htmlContent += `<td>${aiData[i][j] || '<div class="empty-cell"></div>'}</td>`;
+                            }
+                        }
+                        htmlContent += '</tr>';
+                    }
+                    htmlContent += '</table>';
+                    
+                    // Implementation Table
+                    htmlContent += `<h3>Implementation</h3><table>`;
+                    const implData = englishData['implementation-english'] || [];
+                    for (let i = 0; i < implData.length; i++) {
+                        htmlContent += '<tr>';
+                        for (let j = 0; j < implData[i].length; j++) {
+                            if (i === 0) {
+                                htmlContent += `<th>${implData[i][j] || ''}</th>`;
+                            } else {
+                                htmlContent += `<td>${implData[i][j] || '<div class="empty-cell"></div>'}</td>`;
+                            }
+                        }
+                        htmlContent += '</tr>';
+                    }
+                    htmlContent += '</table>';
+                    
+                    // Monitoring Table
+                    htmlContent += `<h3>Progress Monitoring</h3><table>`;
+                    const monData = englishData['monitoring-english'] || [];
+                    for (let i = 0; i < monData.length; i++) {
+                        htmlContent += '<tr>';
+                        for (let j = 0; j < monData[i].length; j++) {
+                            if (i === 0) {
+                                htmlContent += `<th>${monData[i][j] || ''}</th>`;
+                            } else {
+                                htmlContent += `<td>${monData[i][j] || '<div class="empty-cell"></div>'}</td>`;
+                            }
+                        }
+                        htmlContent += '</tr>';
+                    }
+                    htmlContent += '</table>';
+                    
+                    // Evaluation Table
+                    htmlContent += `<h3>Evaluation (1 Month Period)</h3><table>`;
+                    const evalData = englishData['evaluation-english'] || [];
+                    for (let i = 0; i < evalData.length; i++) {
+                        htmlContent += '<tr>';
+                        for (let j = 0; j < evalData[i].length; j++) {
+                            if (i === 0) {
+                                htmlContent += `<th>${evalData[i][j] || ''}</th>`;
+                            } else {
+                                htmlContent += `<td>${evalData[i][j] || '<div class="empty-cell"></div>'}</td>`;
+                            }
+                        }
+                        htmlContent += '</tr>';
+                    }
+                    htmlContent += '</table>';
+                    
+                    // Continuous Improvement Table
+                    htmlContent += `<h3>Continuous Improvement</h3><table>`;
+                    const contData = englishData['continuous-improvement-english'] || [];
+                    for (let i = 0; i < contData.length; i++) {
+                        htmlContent += '<tr>';
+                        for (let j = 0; j < contData[i].length; j++) {
+                            if (i === 0) {
+                                htmlContent += `<th>${contData[i][j] || ''}</th>`;
+                            } else {
+                                htmlContent += `<td>${contData[i][j] || '<div class="empty-cell"></div>'}</td>`;
+                            }
+                        }
+                        htmlContent += '</tr>';
+                    }
+                    htmlContent += '</table>';
+                    
+                    // Approval Section
+                    htmlContent += `
+                    <h3>Project Approval</h3>
+                    <table>
+                        <tr><td><strong>Plan Prepared by:</strong></td><td>................................</td><td><strong>Date:</strong></td><td>................</td></tr>
+                        <tr><td><strong>Project Approved by:</strong></td><td>................................</td><td><strong>Date:</strong></td><td>................</td></tr>
+                        <tr><td><strong>Department Head:</strong></td><td>................................</td><td><strong>Date:</strong></td><td>................</td></tr>
+                    </table>`;
+                }
+                
+                htmlContent += `</body></html>`;
+                
+                const blob = new Blob([htmlContent], { type: 'application/vnd.ms-excel;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `project_planning_filled_${language}_${new Date().toISOString().split('T')[0]}.xls`;
+                a.click();
+                URL.revokeObjectURL(url);
+                
+                showStatus(language === 'thai' ? 
+                    'ดาวน์โหลดข้อมูลที่กรอกแล้วสำเร็จ! ✓' : 
+                    'Filled data downloaded successfully! ✓');
+                
+            } catch (error) {
+                console.error('Excel download error:', error);
+                alert('Excel download failed / ดาวน์โหลด Excel ล้มเหลว');
+            }
+        }
+
+        function downloadCSV() {
+            try {
+                const data = getAllData();
+                let csvContent = '';
+                
+                // Thai section
+                csvContent += 'THAI DATA / ข้อมูลภาษาไทย\n\n';
+                
+                const thaiTables = [
+                    { id: 'ai-planning-thai', title: 'แผนการทำงานเชิงรุก การใช้ AI เพื่อต่อยอดในการทำงานกราฟิก' },
+                    { id: 'implementation-thai', title: 'ดำเนินการ' },
+                    { id: 'monitoring-thai', title: 'การติดตามผล' },
+                    { id: 'evaluation-thai', title: 'การประเมินผล' },
+                    { id: 'continuous-improvement-thai', title: 'การปรับปรุงต่อเนื่อง' }
+                ];
+                
+                thaiTables.forEach((table, index) => {
+                    if (index > 0) csvContent += '\n';
+                    csvContent += table.title + '\n';
+                    
+                    const tableData = data.thai[table.id] || [];
+                    tableData.forEach(row => {
+                        csvContent += row.map(cell => `"${(cell || '').replace(/"/g, '""')}"`).join(',') + '\n';
+                    });
+                });
+                
+                csvContent += '\n\nENGLISH DATA / ข้อมูลภาษาอังกฤษ\n\n';
+                
+                const englishTables = [
+                    { id: 'ai-planning-english', title: 'Proactive Work Plan: Using AI to Enhance Graphic Design Work' },
+                    { id: 'implementation-english', title: 'Implementation' },
+                    { id: 'monitoring-english', title: 'Progress Monitoring' },
+                    { id: 'evaluation-english', title: 'Evaluation (1 Month Period)' },
+                    { id: 'continuous-improvement-english', title: 'Continuous Improvement' }
+                ];
+                
+                englishTables.forEach((table, index) => {
+                    if (index > 0) csvContent += '\n';
+                    csvContent += table.title + '\n';
+                    
+                    const tableData = data.english[table.id] || [];
+                    tableData.forEach(row => {
+                        csvContent += row.map(cell => `"${(cell || '').replace(/"/g, '""')}"`).join(',') + '\n';
+                    });
+                });
+                
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `project_planning_data_${new Date().toISOString().split('T')[0]}.csv`;
+                a.click();
+                URL.revokeObjectURL(url);
+                
+                showStatus('CSV data exported successfully! ✓');
+                
+            } catch (error) {
+                alert('CSV export failed / ส่งออก CSV ล้มเหลว');
+            }
+        }
+
+        // Auto-save functionality
+        function setupAutoSave() {
+            document.addEventListener('input', function(e) {
+                if (e.target.classList.contains('input-field')) {
+                    clearTimeout(autoSaveTimeout);
+                    autoSaveTimeout = setTimeout(() => {
+                        saveToMemory();
+                    }, 1000);
+                }
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupAutoSave();
+            showStatus('Template loaded successfully! ✓');
+        });
+    </script>
+</body>
+</html>
+            
+            
         }
         
         .header {
