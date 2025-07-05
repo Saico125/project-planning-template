@@ -615,7 +615,8 @@
             <!-- ปุ่มดาวน์โหลดหลัก -->
             <div style="margin-bottom: 20px;">
                 <button class="download-btn" onclick="downloadPDF()">📄 Print to PDF / พิมพ์เป็น PDF</button>
-                <button class="download-btn" onclick="downloadWord()" style="background: #8b5cf6;">📝 Download Word / ดาวน์โหลด Word</button>
+                <button class="download-btn" onclick="downloadWordThai()" style="background: #374151;">📝 Thai Word / ไฟล์ Word ไทย</button>
+                <button class="download-btn" onclick="downloadWordEnglish()" style="background: #374151;">📝 English Word / ไฟล์ Word อังกฤษ</button>
             </div>
             
             <!-- ปุ่มดาวน์โหลด Excel Template -->
@@ -637,7 +638,8 @@
                 <strong>📥 การดาวน์โหลด / Download Options:</strong><br>
                 • <strong>Excel:</strong> แบบฟอร์มที่จัดรูปแบบพร้อมข้อมูล / Formatted template with your data<br>
                 • <strong>PDF:</strong> สำหรับพิมพ์หรือส่งเอกสาร / For printing or document sharing<br>
-                • <strong>Word:</strong> เอกสาร .doc พร้อมข้อมูลครบถ้วนทั้งสองภาษา / Complete .doc document with both languages<br><br>
+                • <strong>Word (Thai):</strong> เอกสาร .doc ภาษาไทยที่เป็นทางการ / Formal Thai .doc document<br>
+                • <strong>Word (English):</strong> เอกสาร .doc ภาษาอังกฤษที่เป็นทางการ / Formal English .doc document<br><br>
                 
                 <strong>✅ เคล็ดลับ / Tips:</strong><br>
                 • สลับภาษาได้ตลอดเวลา / Switch languages anytime<br>
@@ -1181,12 +1183,12 @@
             }
         }
 
-        function downloadWord() {
+        function downloadWordThai() {
             try {
                 // รวบรวมข้อมูลจริงจาก UI
                 const data = getAllData();
+                const thaiData = data.thai;
                 
-                // สร้างเนื้อหาที่มีทั้งภาษาไทยและอังกฤษ
                 let wordContent = `
                 <html xmlns:o="urn:schemas-microsoft-com:office:office" 
                       xmlns:w="urn:schemas-microsoft-com:office:word" 
@@ -1197,17 +1199,82 @@
                     <meta name=Generator content="Microsoft Word 15">
                     <meta name=Originator content="Microsoft Word 15">
                     <style>
-                        body { font-family: 'TH Sarabun New', Arial, sans-serif; font-size: 16pt; line-height: 1.5; }
-                        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; page-break-inside: avoid; }
-                        th, td { border: 1px solid #000; padding: 8px; text-align: left; vertical-align: top; }
-                        th { background-color: #f0f0f0; font-weight: bold; text-align: center; }
-                        h1 { color: #2563eb; text-align: center; font-size: 24pt; margin-bottom: 10pt; }
-                        h2 { color: #1e293b; font-size: 20pt; margin-top: 20pt; margin-bottom: 10pt; }
-                        h3 { color: #374151; font-size: 18pt; margin-top: 15pt; margin-bottom: 8pt; }
-                        .header-section { text-align: center; margin-bottom: 30pt; }
-                        .approval-table { width: 100%; margin-top: 20pt; }
-                        .approval-table td { border: 1px solid #ddd; padding: 10pt; }
-                        .page-break { page-break-before: always; }
+                        @page { margin: 2cm 2cm 2cm 2cm; }
+                        body { 
+                            font-family: 'TH Sarabun New', 'Angsana New', Arial, sans-serif; 
+                            font-size: 14pt; 
+                            line-height: 1.4; 
+                            color: #000000;
+                            margin: 0;
+                            padding: 0;
+                        }
+                        table { 
+                            border-collapse: collapse; 
+                            width: 100%; 
+                            margin-bottom: 15pt; 
+                            page-break-inside: avoid;
+                            font-size: 13pt;
+                        }
+                        th, td { 
+                            border: 1pt solid #000000; 
+                            padding: 6pt 8pt; 
+                            text-align: left; 
+                            vertical-align: top;
+                            color: #000000;
+                        }
+                        th { 
+                            background-color: #f5f5f5; 
+                            font-weight: bold; 
+                            text-align: center;
+                            font-size: 13pt;
+                        }
+                        h1 { 
+                            color: #000000; 
+                            text-align: center; 
+                            font-size: 18pt; 
+                            font-weight: bold;
+                            margin: 20pt 0 15pt 0; 
+                            page-break-after: avoid;
+                        }
+                        h2 { 
+                            color: #000000; 
+                            font-size: 16pt; 
+                            font-weight: bold;
+                            margin: 18pt 0 12pt 0; 
+                            page-break-after: avoid;
+                            border-bottom: 1pt solid #000000;
+                            padding-bottom: 3pt;
+                        }
+                        h3 { 
+                            color: #000000; 
+                            font-size: 14pt; 
+                            font-weight: bold;
+                            margin: 15pt 0 8pt 0; 
+                            page-break-after: avoid;
+                        }
+                        .header-section { 
+                            text-align: center; 
+                            margin-bottom: 25pt;
+                            border-bottom: 2pt solid #000000;
+                            padding-bottom: 15pt;
+                        }
+                        .approval-table { 
+                            width: 100%; 
+                            margin-top: 20pt;
+                            font-size: 13pt;
+                        }
+                        .approval-table td { 
+                            border: 1pt solid #000000; 
+                            padding: 8pt 10pt; 
+                        }
+                        .footer-note {
+                            font-size: 11pt;
+                            color: #666666;
+                            margin-top: 20pt;
+                            text-align: center;
+                            border-top: 1pt solid #cccccc;
+                            padding-top: 10pt;
+                        }
                     </style>
                 </head>
                 <body>`;
@@ -1215,25 +1282,26 @@
                 // Header
                 wordContent += `
                 <div class="header-section">
-                    <h1>Project Planning Template</h1>
                     <h1>แบบฟอร์มวางแผนโครงการ</h1>
-                    <p><strong>วันที่สร้างเอกสาร / Document Created:</strong> ${new Date().toLocaleDateString('th-TH')}</p>
+                    <h1>การใช้ AI เพื่อต่อยอดในการทำงานกราฟิก</h1>
+                    <p><strong>วันที่สร้างเอกสาร:</strong> ${new Date().toLocaleDateString('th-TH', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    })}</p>
                 </div>`;
                 
-                // Thai Section
-                wordContent += `<h2>📋 ข้อมูลภาษาไทย (Thai Data)</h2>`;
-                
-                const thaiData = data.thai;
+                // Thai Tables
                 const thaiTables = [
-                    { id: 'ai-planning-thai', title: 'แผนการทำงานเชิงรุก การใช้ AI เพื่อต่อยอดในการทำงานกราฟิก' },
-                    { id: 'implementation-thai', title: 'การดำเนินการ' },
-                    { id: 'monitoring-thai', title: 'การติดตามผล' },
-                    { id: 'evaluation-thai', title: 'การประเมินผล (เวลา 1 เดือน)' },
-                    { id: 'continuous-improvement-thai', title: 'การปรับปรุงต่อเนื่อง' }
+                    { id: 'ai-planning-thai', title: '1. แผนการทำงานเชิงรุก การใช้ AI เพื่อต่อยอดในการทำงานกราฟิก' },
+                    { id: 'implementation-thai', title: '2. การดำเนินการ' },
+                    { id: 'monitoring-thai', title: '3. การติดตามผล' },
+                    { id: 'evaluation-thai', title: '4. การประเมินผล (เวลา 1 เดือน)' },
+                    { id: 'continuous-improvement-thai', title: '5. การปรับปรุงต่อเนื่อง' }
                 ];
                 
                 thaiTables.forEach((table, index) => {
-                    wordContent += `<h3>${table.title}</h3><table>`;
+                    wordContent += `<h2>${table.title}</h2><table>`;
                     
                     const tableData = thaiData[table.id] || [];
                     for (let i = 0; i < tableData.length; i++) {
@@ -1243,7 +1311,7 @@
                                 wordContent += `<th>${tableData[i][j] || ''}</th>`;
                             } else {
                                 const cellContent = tableData[i][j] || '';
-                                wordContent += `<td>${cellContent || '&nbsp;'}</td>`;
+                                wordContent += `<td>${cellContent || '___________________________'}</td>`;
                             }
                         }
                         wordContent += '</tr>';
@@ -1253,30 +1321,170 @@
                 
                 // Thai Approval Section
                 wordContent += `
-                <h3>การรับรองผลงาน</h3>
+                <h2>6. การรับรองผลงาน</h2>
                 <table class="approval-table">
-                    <tr><td width="25%"><strong>ผู้จัดทำแผนงาน:</strong></td><td width="35%">................................</td><td width="15%"><strong>วันที่:</strong></td><td width="25%">................</td></tr>
-                    <tr><td><strong>ผู้อนุมัติโครงการ:</strong></td><td>................................</td><td><strong>วันที่:</strong></td><td>................</td></tr>
-                    <tr><td><strong>หัวหน้าแผนก:</strong></td><td>................................</td><td><strong>วันที่:</strong></td><td>................</td></tr>
+                    <tr>
+                        <td width="25%"><strong>ผู้จัดทำแผนงาน:</strong></td>
+                        <td width="40%">___________________________</td>
+                        <td width="15%"><strong>วันที่:</strong></td>
+                        <td width="20%">_______________</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ผู้อนุมัติโครงการ:</strong></td>
+                        <td>___________________________</td>
+                        <td><strong>วันที่:</strong></td>
+                        <td>_______________</td>
+                    </tr>
+                    <tr>
+                        <td><strong>หัวหน้าแผนก:</strong></td>
+                        <td>___________________________</td>
+                        <td><strong>วันที่:</strong></td>
+                        <td>_______________</td>
+                    </tr>
                 </table>`;
                 
-                // Page Break
-                wordContent += `<div class="page-break"></div>`;
+                wordContent += `
+                <div class="footer-note">
+                    <p>เอกสารนี้สร้างจากระบบวางแผนโครงการ AI สำหรับงานกราฟิก</p>
+                </div>
+                </body></html>`;
                 
-                // English Section
-                wordContent += `<h2>📋 English Data / ข้อมูลภาษาอังกฤษ</h2>`;
+                // สร้างและดาวน์โหลดไฟล์
+                const blob = new Blob([wordContent], { type: 'application/msword;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `แผนโครงการ_AI_กราฟิก_ไทย_${new Date().toISOString().split('T')[0]}.doc`;
+                a.click();
+                URL.revokeObjectURL(url);
                 
+                showStatus('ดาวน์โหลดเอกสารภาษาไทยสำเร็จ! ✓');
+                
+            } catch (error) {
+                console.error('Thai Word download error:', error);
+                alert('ดาวน์โหลดเอกสารภาษาไทยล้มเหลว');
+            }
+        }
+
+        function downloadWordEnglish() {
+            try {
+                // รวบรวมข้อมูลจริงจาก UI
+                const data = getAllData();
                 const englishData = data.english;
+                
+                let wordContent = `
+                <html xmlns:o="urn:schemas-microsoft-com:office:office" 
+                      xmlns:w="urn:schemas-microsoft-com:office:word" 
+                      xmlns="http://www.w3.org/TR/REC-html40">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name=ProgId content=Word.Document>
+                    <meta name=Generator content="Microsoft Word 15">
+                    <meta name=Originator content="Microsoft Word 15">
+                    <style>
+                        @page { margin: 2cm 2cm 2cm 2cm; }
+                        body { 
+                            font-family: 'Times New Roman', 'Calibri', Arial, sans-serif; 
+                            font-size: 12pt; 
+                            line-height: 1.4; 
+                            color: #000000;
+                            margin: 0;
+                            padding: 0;
+                        }
+                        table { 
+                            border-collapse: collapse; 
+                            width: 100%; 
+                            margin-bottom: 15pt; 
+                            page-break-inside: avoid;
+                            font-size: 11pt;
+                        }
+                        th, td { 
+                            border: 1pt solid #000000; 
+                            padding: 6pt 8pt; 
+                            text-align: left; 
+                            vertical-align: top;
+                            color: #000000;
+                        }
+                        th { 
+                            background-color: #f5f5f5; 
+                            font-weight: bold; 
+                            text-align: center;
+                            font-size: 11pt;
+                        }
+                        h1 { 
+                            color: #000000; 
+                            text-align: center; 
+                            font-size: 16pt; 
+                            font-weight: bold;
+                            margin: 20pt 0 15pt 0; 
+                            page-break-after: avoid;
+                        }
+                        h2 { 
+                            color: #000000; 
+                            font-size: 14pt; 
+                            font-weight: bold;
+                            margin: 18pt 0 12pt 0; 
+                            page-break-after: avoid;
+                            border-bottom: 1pt solid #000000;
+                            padding-bottom: 3pt;
+                        }
+                        h3 { 
+                            color: #000000; 
+                            font-size: 12pt; 
+                            font-weight: bold;
+                            margin: 15pt 0 8pt 0; 
+                            page-break-after: avoid;
+                        }
+                        .header-section { 
+                            text-align: center; 
+                            margin-bottom: 25pt;
+                            border-bottom: 2pt solid #000000;
+                            padding-bottom: 15pt;
+                        }
+                        .approval-table { 
+                            width: 100%; 
+                            margin-top: 20pt;
+                            font-size: 11pt;
+                        }
+                        .approval-table td { 
+                            border: 1pt solid #000000; 
+                            padding: 8pt 10pt; 
+                        }
+                        .footer-note {
+                            font-size: 10pt;
+                            color: #666666;
+                            margin-top: 20pt;
+                            text-align: center;
+                            border-top: 1pt solid #cccccc;
+                            padding-top: 10pt;
+                        }
+                    </style>
+                </head>
+                <body>`;
+                
+                // Header
+                wordContent += `
+                <div class="header-section">
+                    <h1>PROJECT PLANNING TEMPLATE</h1>
+                    <h1>AI Integration for Graphic Design Work</h1>
+                    <p><strong>Document Created:</strong> ${new Date().toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    })}</p>
+                </div>`;
+                
+                // English Tables
                 const englishTables = [
-                    { id: 'ai-planning-english', title: 'Proactive Work Plan: Using AI to Enhance Graphic Design Work' },
-                    { id: 'implementation-english', title: 'Implementation' },
-                    { id: 'monitoring-english', title: 'Progress Monitoring' },
-                    { id: 'evaluation-english', title: 'Evaluation (1 Month Period)' },
-                    { id: 'continuous-improvement-english', title: 'Continuous Improvement' }
+                    { id: 'ai-planning-english', title: '1. Proactive Work Plan: Using AI to Enhance Graphic Design Work' },
+                    { id: 'implementation-english', title: '2. Implementation' },
+                    { id: 'monitoring-english', title: '3. Progress Monitoring' },
+                    { id: 'evaluation-english', title: '4. Evaluation (1 Month Period)' },
+                    { id: 'continuous-improvement-english', title: '5. Continuous Improvement' }
                 ];
                 
                 englishTables.forEach((table, index) => {
-                    wordContent += `<h3>${table.title}</h3><table>`;
+                    wordContent += `<h2>${table.title}</h2><table>`;
                     
                     const tableData = englishData[table.id] || [];
                     for (let i = 0; i < tableData.length; i++) {
@@ -1286,7 +1494,7 @@
                                 wordContent += `<th>${tableData[i][j] || ''}</th>`;
                             } else {
                                 const cellContent = tableData[i][j] || '';
-                                wordContent += `<td>${cellContent || '&nbsp;'}</td>`;
+                                wordContent += `<td>${cellContent || '___________________________'}</td>`;
                             }
                         }
                         wordContent += '</tr>';
@@ -1296,29 +1504,48 @@
                 
                 // English Approval Section
                 wordContent += `
-                <h3>Project Approval</h3>
+                <h2>6. Project Approval</h2>
                 <table class="approval-table">
-                    <tr><td width="25%"><strong>Plan Prepared by:</strong></td><td width="35%">................................</td><td width="15%"><strong>Date:</strong></td><td width="25%">................</td></tr>
-                    <tr><td><strong>Project Approved by:</strong></td><td>................................</td><td><strong>Date:</strong></td><td>................</td></tr>
-                    <tr><td><strong>Department Head:</strong></td><td>................................</td><td><strong>Date:</strong></td><td>................</td></tr>
+                    <tr>
+                        <td width="25%"><strong>Plan Prepared by:</strong></td>
+                        <td width="40%">___________________________</td>
+                        <td width="15%"><strong>Date:</strong></td>
+                        <td width="20%">_______________</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Project Approved by:</strong></td>
+                        <td>___________________________</td>
+                        <td><strong>Date:</strong></td>
+                        <td>_______________</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Department Head:</strong></td>
+                        <td>___________________________</td>
+                        <td><strong>Date:</strong></td>
+                        <td>_______________</td>
+                    </tr>
                 </table>`;
                 
-                wordContent += `</body></html>`;
+                wordContent += `
+                <div class="footer-note">
+                    <p>This document was generated from AI Graphic Design Project Planning System</p>
+                </div>
+                </body></html>`;
                 
                 // สร้างและดาวน์โหลดไฟล์
                 const blob = new Blob([wordContent], { type: 'application/msword;charset=utf-8;' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `project_planning_filled_${new Date().toISOString().split('T')[0]}.doc`;
+                a.download = `AI_Graphic_Project_Plan_English_${new Date().toISOString().split('T')[0]}.doc`;
                 a.click();
                 URL.revokeObjectURL(url);
                 
-                showStatus('Word document downloaded successfully! ✓');
+                showStatus('English document downloaded successfully! ✓');
                 
             } catch (error) {
-                console.error('Word download error:', error);
-                alert('Word download failed / ดาวน์โหลด Word ล้มเหลว');
+                console.error('English Word download error:', error);
+                alert('English Word download failed');
             }
         }
 
